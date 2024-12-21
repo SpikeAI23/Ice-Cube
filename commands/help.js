@@ -1,19 +1,26 @@
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-    name: 'help',
-    description: 'Displays a list of available commands.',
+    data: new SlashCommandBuilder()
+        .setName('help')
+        .setDescription('Lists all available commands or provides information about a specific command.'),
     async execute(interaction) {
-        const bannerUrl = 'https://i.postimg.cc/jq9sMw2D/standard.gif'; // Image
-        const commands = interaction.client.commands.map(cmd => `\`${cmd.name}\`: ${cmd.description}`).join('\n');
+        const commands = interaction.client.commands.map(command => {
+            return `**/${command.data.name}**: ${command.data.description}`;
+        }).join('\n');
 
-        const helpEmbed = new EmbedBuilder()
-            .setColor(0x00AE86) // Choose a color for the embed ( Keep 0x )
-            .setTitle('Help Menu')
-            .setDescription('Here is a list of available commands:')
-            .addFields({ name: 'Commands', value: commands })
-            .setImage(bannerUrl) // Adds the banner image at the top
-            .setFooter({ text: 'Use /command-name to execute a command.', iconURL: interaction.client.user.displayAvatarURL() });
+        const helpEmbed = {
+            color: 0x0099ff,
+            title: 'Available Commands',
+            description: commands || 'No commands available.',
+            timestamp: new Date(),
+            footer: {
+                text: 'Use /command_name to execute a command!',
+            },
+            image: {
+                url: 'https://i.imgur.com/your_banner_image_url.png' // Replace with your banner image URL
+            }
+        };
 
         await interaction.reply({ embeds: [helpEmbed] });
     },
