@@ -7,6 +7,29 @@ const chokidar = require('chokidar'); // Import chokidar
 const client = new Client({ intents: [IntentsBitField.Flags.Guilds] });
 client.commands = new Collection();
 
+// Load presence and status from JSON files
+const configFolderPath = path.join(__dirname, 'config');
+const presencePath = path.join(configFolderPath, 'presence.json');
+const statusPath = path.join(configFolderPath, 'status.json');
+
+let presence = {};
+let status = 'online';
+
+try {
+    presence = JSON.parse(fs.readFileSync(presencePath, 'utf-8'));
+    console.log('Loaded presence configuration:', presence);
+} catch (error) {
+    console.error('Error loading presence configuration:', error);
+}
+
+try {
+    const statusConfig = JSON.parse(fs.readFileSync(statusPath, 'utf-8'));
+    status = statusConfig.status || 'online';
+    console.log('Loaded status configuration:', status);
+} catch (error) {
+    console.error('Error loading status configuration:', error);
+}
+
 // Function to load commands
 const loadCommands = () => {
     const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
@@ -70,6 +93,17 @@ chokidar.watch(path.join(__dirname, 'commands')).on('all', (event, filePath) => 
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
+
+    // Set bot presence and status using loaded configuration
+    if (presence.activities && status) {
+        client.user.setPresence({
+            activities: presence.activities,
+            status: status
+        });
+        console.log('Presence and status set from configuration:', { activities: presence.activities, status });
+    } else {
+        console.warn('Presence or status configuration is missing or invalid. Skipping presence setup.');
+    }
 });
 
 client.on('interactionCreate', async interaction => {

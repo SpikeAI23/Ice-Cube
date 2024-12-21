@@ -1,4 +1,10 @@
 {
-    "activity": "Playing games",
-    "type": "PLAYING"
-}
+    "activities": [
+      {
+        "name": "with the API",
+        "type": "PLAYING"
+      }
+    ],
+    "status": "online"
+  }
+  
