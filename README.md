@@ -1,13 +1,21 @@
-# My Awesome Discord Bot
+# Ice-Cube Template
+Ice cube's bot code; Feel free to fork then customize it to fit your specific bot's features and purpose.
+## Dependencies
 
-This README provides information about your Discord bot. Feel free to customize it to fit your specific bot's features and purpose.
+```bash
+npm install discord.js
+```
 
+```bash
+npm install dotenv
+```
+
+```bash
+npm install chokidar
+```
 ## Features
 
-* **Command 1:**  (Describe what this command does)
-* **Command 2:**  (Describe what this command does)
-* **Command 3:**  (Describe what this command does)
-* **...**
+* ***Automatic Command Refreshing*** - every time there is a change within the commands folder it will update the bot.
 
 ## Getting Started
 
