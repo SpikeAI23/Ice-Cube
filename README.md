@@ -16,7 +16,7 @@ npm install chokidar
 ## Features
 
 * ***Automatic Command Refreshing*** - every time there is a change within the commands folder it will update the bot.
-
+* ***Error Printing*** - Will show errors and still run the previous working version until fixed.
 ## Getting Started
 
 1. **Install Node.js:** Make sure you have Node.js installed on your system. You can download it from [https://nodejs.org/](https://nodejs.org/).
