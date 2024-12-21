@@ -12,6 +12,7 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.65",
     "axios": "^1.7.9",
+    "chokidar": "^4.0.3",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.7"
   }

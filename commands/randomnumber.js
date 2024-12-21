@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('random')
+        .setName('randomnumber')
         .setDescription('Generates a random number within a specified range.')
         .addIntegerOption(option =>
             option.setName('min')
