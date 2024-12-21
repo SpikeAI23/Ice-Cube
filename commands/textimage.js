@@ -1,10 +1,9 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { createCanvas, loadImage } = require('@napi-rs/canvas');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('Text Image')
-        .setDescription('Generates an image with custom text.')
+        .setName('text_image') // Change this to a valid format
+        .setDescription('Generates an image from text')
         .addStringOption(option =>
             option.setName('text')
                 .setDescription('Text to include in the image.')
